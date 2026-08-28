@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/c:\\Users\\della\\OneDrive\\Documents\\aed2\\template_tp1\\overleaf\\overleaf\\main.aux": true,
+    "**/c:\\Users\\della\\OneDrive\\Documents\\aed2\\template_tp1\\overleaf\\overleaf\\main.log": true,
+    "**/c:\\Users\\della\\OneDrive\\Documents\\aed2\\template_tp1\\overleaf\\overleaf\\main.gz": true,
+    "**/c:\\Users\\della\\OneDrive\\Documents\\aed2\\template_tp1\\overleaf\\overleaf\\main.out": true
+  }
+}
