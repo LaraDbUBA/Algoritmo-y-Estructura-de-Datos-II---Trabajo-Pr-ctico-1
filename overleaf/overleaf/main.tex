@@ -149,9 +149,7 @@ Además, disponen de comandos para cuantificadores: $\paraTodo{x}{\mathbb{Z}}{x 
 \begin{proc}{iniciarPromocion}
 {\In p: \cha, \In f: \ent, \Inout  a: AirMiles}{}
     \requiere{ f \geq 1 \land a = A0}
-    \asegura{
-        a.obs
-    }
+    \aseguraLargo{\paraTodo{i}{\Z}{0 \leq i < \norm{A0.promociones} \implicaLuego A0.promociones[i][0] = p \implica a.promociones[i][1] = f \land a.promociones[i][2] = True} }
 \end{proc}
 
 \begin{proc}{iniciarPromocionConTope}
