@@ -81,27 +81,39 @@ Además, disponen de comandos para cuantificadores: $\paraTodo{x}{\mathbb{Z}}{x 
 \aux{unAuxiliar}{k: \Z,l: \Z}{\Z}{\norm{k-l}}
 
 \end{tad}
+
+%Aca arranca
 \newpage
+
+Usuario ES $\struct{ID: \Z, millasTotales: \Z, millasDisponibles: \Z, historialTransacciones: \seq }$ \newline
 \begin{tad}{AirMiles}
 
-\obs{promociones}{\seq{\tupla{\cha, \ent, \bool}}}
+\obs{promociones}{\seq{\tupla{\cha, \ent, \bool}}}\newline 
+\obs{usuarios}{\conj{\Tipo{Usuario}}}
+
 
 \begin{proc}{crearSistema}
-{tipos}{\Tipo{AirMiles}}
+{}{\Tipo{AirMiles}}
     \requiere{True}
-    \asegura{algo}
+    \asegura{res.promociones = [('NoPromo', 1, False)] \land
+    res.usuarios = \emptyset 
+    }
 \end{proc}
 
+
+
 \begin{proc}{registrarUsuario}
-{tipos}{\Tipo{AirMiles}}
-    \requiere{True}
-    \asegura{algo}
+{\Inout a: \Tipo{AirMiles}, \In id: \Z}{}
+    \requiere{\neq existeUsuario(id, a) \land a = A0}
+    \asegura{a.usuarios = A0.usuarios \cup u}
+    
 \end{proc}
 
 \begin{proc}{registrarUsuarioConReferidor}
-{tipos}{\Tipo{AirMiles}}
-    \requiere{True}
-    \asegura{algo}
+{\In usuario: \Tipo{Usuario}, \In referidor: \Tipo{Usuario}, \Inout a: \Tipo{AirMiles}}{}
+    \requiere{referidor in a.usuarios \land a = A0}
+    \asegura{a.usuarios = A0.usuarios \cup usuario}
+    \asegura{u.millasDisponibles = millasDisponibles(u, A0) + 500}
 \end{proc}
 
 \begin{proc}{acumularMillas}
@@ -183,6 +195,21 @@ Además, disponen de comandos para cuantificadores: $\paraTodo{x}{\mathbb{Z}}{x 
     \requiere{True}
     \asegura{algo}
 \end{proc}
+
+\begin{aux}{millasDisponibles}{\In u: \Tipo{Usuario}, \In a: \Tipo{AirMiles}}{\Z}{u.millasDisponibles}
+
+\end{aux}
+
+\begin{aux}{millasTotales}{\In u: \Tipo{Usuario}, \In a: \Tipo{AirMiles}}{\Z}{u.millasTotales}
+
+\end{aux}
+\begin{aux}{historialTransacciones}{\In u: \Tipo{Usuario}, \In a: \Tipo{AirMiles}}{\Z}{u.historialTransacciones}
+
+\end{aux}
+
+\pred{existeUsuario}{id: \Z, a: \Tipo{AirMiles}}{
+    \existe{u_0}{\Tipo{Usuario}}{u_0 \in a.usuarios \yLuego u_0.ID = id}
+}
 \end{tad}
 
 \end{document}
