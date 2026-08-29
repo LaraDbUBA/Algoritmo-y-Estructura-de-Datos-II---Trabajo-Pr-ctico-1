@@ -86,32 +86,34 @@ Además, disponen de comandos para cuantificadores: $\paraTodo{x}{\mathbb{Z}}{x 
 \newpage
 
 Usuario ES $\struct{ID: \Z, millasTotales: \Z, millasDisponibles: \Z, historialTransacciones: \seq }$ \newline
+Promocion ES $\struct{nombre: \cha, factor: \Z, estado: \bool}$ \newline
 \begin{tad}{AirMiles}
 
+   \b{esto hay que verlo, no hace falta}
 \obs{promociones}{\seq{\tupla{\cha, \ent, \bool}}}\newline 
-\obs{usuarios}{\conj{\Tipo{Usuario}}}
-
+\obs{usuarios}{\conj{\Tipo{Usuario}}} \newline
+\obs{promociones}{\conj{\Tipo{Promocion}}} 
 
 \begin{proc}{crearSistema}
 {}{\Tipo{AirMiles}}
     \requiere{True}
-    \asegura{res.promociones = [('NoPromo', 1, False)] \land
-    res.usuarios = \emptyset 
-    }
+    \asegura{\existe{p}{\Tipo{Promocion}}{p \in res.promociones \land nombrePromocion(p, res) = 'NoPromo' \land factorPromocion(p, res) = 1}} 
+    \asegura{res.usuarios = \emptyset}
+    \asegura{\# res.promociones =1}
 \end{proc}
 
 
 
 \begin{proc}{registrarUsuario}
 {\Inout a: \Tipo{AirMiles}, \In id: \Z}{}
-    \requiere{\neq existeUsuario(id, a) \land a = A0}
-    \asegura{a.usuarios = A0.usuarios \cup u}
+    \requiere{! existeUsuario(id, a) \land a = A0}
+    \asegura{a.usuarios = A0.usuarios \cup usuarioRegistrado(id, 0, 0, [])}
     
 \end{proc}
 
 \begin{proc}{registrarUsuarioConReferidor}
 {\In usuario: \Tipo{Usuario}, \In referidor: \Tipo{Usuario}, \Inout a: \Tipo{AirMiles}}{}
-    \requiere{referidor in a.usuarios \land a = A0}
+    \requiere{referidor \in a.usuarios \land a = A0}
     \asegura{a.usuarios = A0.usuarios \cup usuario}
     \asegura{u.millasDisponibles = millasDisponibles(u, A0) + 500}
 \end{proc}
@@ -159,11 +161,11 @@ Usuario ES $\struct{ID: \Z, millasTotales: \Z, millasDisponibles: \Z, historialT
 \end{proc}
 
 \begin{proc}{iniciarPromocion}
-{\In p: \cha, \In f: \ent, \Inout  a: AirMiles}{}
+{\In nombre: \cha, \In factor: \ent, \Inout  a: AirMiles}{}
     \requiere{ f \geq 1 \land a = A0}
-    \asegura{\paraTodo{i}{\Z}{0 \leq i \leq \norm{A0.promociones} \implicaLuego A0.promociones[i][0] = p \implica a.promociones[i][1] = f \land a.promociones[i][2] = True}}
-    \asegura{\paraTodo{i}{\Z}{0 \leq i \leq \norm{A0.promociones} \implicaLuego A0.promociones[i][0] \neq p \implica a.promociones[i] = A0.promociones[i]}}
-    \asegura{(!(\existe{i}{\Z}{0 \leq i \leq \norm{A0.promociones} \yLuego A0.promociones[i][0] = p })) \implica a.promociones[\norm{A0.promociones}] = (p,f,True)}
+    \asegura{\existe{p}{\Tipo{Promocion}}{p \in a.promociones \land p.nombre = nombre \land p.factor = factor \land p.estado = True}}
+    \asegura{\paraTodo{p}{\Tipo{Promocion}}{p \in A0.promociones \land p.nombre \neq nombre \implica p \in a.promociones}}
+    \asegura{ }
 \end{proc}
 
 \begin{proc}{iniciarPromocionConTope}
@@ -196,18 +198,27 @@ Usuario ES $\struct{ID: \Z, millasTotales: \Z, millasDisponibles: \Z, historialT
     \asegura{algo}
 \end{proc}
 
-\begin{aux}{millasDisponibles}{\In u: \Tipo{Usuario}, \In a: \Tipo{AirMiles}}{\Z}{u.millasDisponibles}
+\begin{aux}{usuarioRegistrado}{\In id: \Z, \In millasTotales: \Z, \In millasDisponibles: \Z, \In historial: \seq}{\Tipo{Usuario}}{(id, millasTotales, millasDisponibles, historial)}
 
+\end{aux}
+\begin{aux}{millasDisponibles}{\In u: \Tipo{Usuario}, \In a: \Tipo{AirMiles}}{\Z}{u.millasDisponibles}
 \end{aux}
 
 \begin{aux}{millasTotales}{\In u: \Tipo{Usuario}, \In a: \Tipo{AirMiles}}{\Z}{u.millasTotales}
-
 \end{aux}
+
 \begin{aux}{historialTransacciones}{\In u: \Tipo{Usuario}, \In a: \Tipo{AirMiles}}{\Z}{u.historialTransacciones}
-
 \end{aux}
 
-\pred{existeUsuario}{id: \Z, a: \Tipo{AirMiles}}{
+\begin{aux}{nombrePromocion}{\In p: \Tipo{Promocion}, \In a: \Tipo{AirMiles}}{\Z}{p.nombre}
+\end{aux}
+
+\begin{aux}{factorPromocion}{\In p: \Tipo{Promocion}, \In a: \Tipo{AirMiles}}{\Z}{p.factor}
+\end{aux}
+\begin{aux}{estadoPromocion}{\In p: \Tipo{Promocion}, \In a: \Tipo{AirMiles}}{\Z}{p.estado}
+
+\end{aux}
+\pred{existeUsuarioEnSistema}{id: \Z, a: \Tipo{AirMiles}}{
     \existe{u_0}{\Tipo{Usuario}}{u_0 \in a.usuarios \yLuego u_0.ID = id}
 }
 \end{tad}
