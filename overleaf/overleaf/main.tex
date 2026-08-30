@@ -85,7 +85,7 @@ Además, disponen de comandos para cuantificadores: $\paraTodo{x}{\mathbb{Z}}{x 
 %Aca arranca
 \newpage
 
-Usuario ES $\struct{ID: \Z, millasTotales: \Z, millasDisponibles: \Z, historialTransacciones: \seq }$ \newline
+Usuario ES $\struct{ID: \Z, millasTotales: \Z, millasDisponibles: \Z, historialTransacciones: \seq , factorCategoria: \Z}$ \newline
 Promocion ES $\struct{nombre: \cha, factor: \Z, estado: \bool}$ \newline
 \begin{tad}{AirMiles}
 
@@ -107,7 +107,7 @@ Promocion ES $\struct{nombre: \cha, factor: \Z, estado: \bool}$ \newline
 \begin{proc}{registrarUsuario}
 {\Inout a: \Tipo{AirMiles}, \In id: \Z}{}
     \requiere{! existeUsuario(id, a) \land a = A0}
-    \asegura{a.usuarios = A0.usuarios \cup usuarioRegistrado(id, 0, 0, [])}
+    \asegura{a.usuarios = A0.usuarios \cup usuarioRegistrado(id, 0, 0, [], 1)}
     
 \end{proc}
 
@@ -115,15 +115,19 @@ Promocion ES $\struct{nombre: \cha, factor: \Z, estado: \bool}$ \newline
 {\In usuario: \Tipo{Usuario}, \In referidor: \Tipo{Usuario}, \Inout a: \Tipo{AirMiles}}{}
     \requiere{referidor \in a.usuarios \land a = A0}
     \asegura{a.usuarios = A0.usuarios \cup usuario}
-    \asegura{u.millasDisponibles = millasDisponibles(u, A0) + 500}
+    \asegura{usuario.millasDisponibles = millasDisponibles(usuario, A0) + 500}
+    % es usuario.millasDisponibles o millasDisponibles(usuario, a)?
 \end{proc}
 
 \begin{proc}{acumularMillas}
-{tipos}{\Tipo{AirMiles}}
-    \requiere{True}
-    \asegura{algo}
+{\In usuario: \Tipo{Usuario}, \In distancia: \Z, \In nombrePromo: \cha, \Inout a:\Tipo{AirMiles}}{}
+    \requiere{usuario \in a.usuarios \land a = A0 \land distancia \geq 0 \land esPromoActiva(nombrePromo, a)}
+    \asegura{h}
 \end{proc}
 
+\pred{esPromoActiva}{nombre: \cha, a:\Tipo{AirMiles}}{
+    (\existe{p}{\Tipo{Promocion}}{p \in a.promociones \yLuego p.nombre = nombre \land p.estado = True})
+} \newline
 \begin{proc}{canjearMillas}
 {tipos}{\Tipo{AirMiles}}
     \requiere{True}
