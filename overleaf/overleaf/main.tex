@@ -118,10 +118,10 @@ Categoria ES $\cha$ \newline
 \begin{proc}{registrarUsuarioConReferidor}
 {\In idNuevoUsuario: \Z, \In referidor: \Tipo{Usuario}, \Inout a: \Tipo{AirMiles}}{}
     \requiere{referidor \in a.usuarios \land a = A0 \land !esUsuarioRegistrado(idNuevoUsuario, a)}
-   \asegura{\existe{u}{\Tipo{Usuario}}{u \in a.usuarios \land u.id = id \land u.millasTotales = 500 \land u.millasDisponibles = 500 \land u.historial = [] \land u.categoria = Bronce}}
-    \asegura{\paraTodo{u}{\Tipo{Usuario}}{u \in A0.usuarios \land u \neq ref \implicaLuego u \in a.usuarios}}
+   \asegura{\existe{u}{\Tipo{Usuario}}{u \in a.usuarios \land u.id = idNuevoUsuario \land u.millasTotales = 500 \land u.millasDisponibles = 500 \land u.historial = [] \land u.categoria = Bronce}}
+    \asegura{\paraTodo{u}{\Tipo{Usuario}}{u \in A0.usuarios \land u \neq referidor \implicaLuego u \in a.usuarios}}
     \asegura{\#a.usuarios = \#A0.usuarios + 1}
-    \asegura{\existe{u}{\Tipo{Usuario}}{u.id = ref.id \land u.millasDisponibles = ref.millasDisponibles + 500 \land u.millasTotales = ref.millasTotales + 500 \land u.historial = ref.historial ++ \land u.categoria = queCategoriaEs(u.millasTotales,a)}}
+    \asegura{\existe{u}{\Tipo{Usuario}}{u.id = referidor.id \land u.millasDisponibles = referidor.millasDisponibles + 500 \land u.millasTotales = referidor.millasTotales + 500 \land u.historial = referidor.historial ++ \land u.categoria = queCategoriaEs(u.millasTotales,a)}}
     \asegura{a.promociones = A0.promociones}
 
 \end{proc}
@@ -197,9 +197,9 @@ Categoria ES $\cha$ \newline
 \end{proc}
 
 \begin{proc}{elQueTieneMasMillas}
-{tipos}{\Tipo{AirMiles}}
+{\In a: \Tipo{AirMiles}}{\Z}
     \requiere{True}
-    \asegura{algo}
+    \asegura{\existe{u}{\Tipo{Usuario}}{u \in a.usuarios \land u.id = res \land tieneMaximasMillas(u, a)}}
 \end{proc}
 
 \begin{proc}{elMasCanjeador}
@@ -215,10 +215,15 @@ Categoria ES $\cha$ \newline
 \end{proc}
 
 \aux{queCategoriaEs}{millas: \Z, a: \Tipo{AirMiles}}{\Tipo{Categoria}}{
-     \IfThenElse{millas \leq 10000}{Bronce}{\newline \IfThenElse{millas\leq 50000}{Plata}{IfThenElse\{millas\leq 1000000, Oro, Platino\}}}}
+     \IfThenElse{millas \leq 10000}{Bronce}{\newline \IfThenElse{millas\leq 50000}{Plata}{IfThenElse\{millas\leq 1000000, Oro, Platino\}}}} \newline
 
+\aux{factorDeCategoria}{categoria: \Tipo{Categoria}}{\Z}{\IfThenElse{categoria = Bronce}{1}{\IfThenElse{categoria = Plata}{1.5}{\IfThenElse{categoria = Oro}{2}{0}}}}
+
+\aux{calculoMillas}{distancia: \Z, factorCategoria: \Z, factorPromocion: \Z}{\Z}{distancia * factorCategoria * factorPromocion}
+
+\pred{tieneMaximasMillas}{u: \Tipo{Usuario}, a: \Tipo{AirMiles}}{\paraTodo{u_0}{\Tipo{Usuario}}{u_0 \in a.usuarios \land u_0 \neq u \implica u.millasTotales \geq u_0.millasTotales}}\newline
 \pred{esUsuarioRegistrado}{id: \Z, a: \Tipo{AirMiles}}{
-    \existe{u_0}{\Tipo{Usuario}}{u_0 \in a.usuarios \yLuego u_0.ID = id}
+    \existe{u_0}{\Tipo{Usuario}}{u_0 \in a.usuarios \yLuego u_0.id = id}
 } \newline
 \pred{esPromoActiva}{nombre: \cha, a:\Tipo{AirMiles}}{
     (\existe{p}{\Tipo{Promocion}}{p \in a.promociones \yLuego p.nombre = nombre \land p.estado = True})
