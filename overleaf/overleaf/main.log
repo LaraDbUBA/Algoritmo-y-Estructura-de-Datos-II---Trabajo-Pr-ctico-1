@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.28)  30 AUG 2026 11:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.5) (preloaded format=pdflatex 2026.8.28)  1 SEP 2026 13:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -290,76 +290,106 @@ Overfull \hbox (62.17267pt too wide) in paragraph at lines 66--66
  []
 
 [1]
+Underfull \hbox (badness 10000) in paragraph at lines 88--91
 
-Package macros/AED Warning: ent Es obsoleto, use Z on input line 93.
-
-
-Overfull \hbox (13.4613pt too wide) in paragraph at lines 115--115
-\OT1/cmtt/m/n/10.95 proc registrarUsuarioConReferidor$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 usuario \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []referidor \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []a \OT1/cmr/m/n/10.95 :
  []
 
 
-Overfull \hbox (19.92772pt too wide) in paragraph at lines 123--123
+Overfull \hbox (38.71043pt too wide) in paragraph at lines 113--113
+\OT1/cmtt/m/n/10.95 asegura \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 9\OML/cmm/m/it/10.95 u \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 u [] A\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :usuarios \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:usuarios \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 u:id \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 id \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 u:millasDisponibles \OT1/cmr/m/n/10.95 =
+ []
+
+
+Overfull \hbox (30.82886pt too wide) in paragraph at lines 119--119
+\OT1/cmtt/m/n/10.95 proc registrarUsuarioConReferidor$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 idNuevoUsuario \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; []referidor \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []a \OT1/cmr/m/n/10.95 :
+ []
+
+
+Overfull \hbox (17.87946pt too wide) in paragraph at lines 120--120
+[]\OT1/cmtt/m/n/10.95 requiere \OMS/cmsy/m/n/10.95 f $\OML/cmm/m/it/10.95 referidor \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:usuarios \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 a \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 A\OT1/cmr/m/n/10.95 0\OMS/cmsy/m/n/10.95 ^\OT1/cmr/m/n/10.95 !\OML/cmm/m/it/10.95 esUsuarioRegistrado\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 idNuevoUsuario; a\OT1/cmr/m/n/10.95 )$
+ []
+
+
+Overfull \hbox (12.73189pt too wide) in paragraph at lines 124--124
+\OT1/cmtt/m/n/10.95 asegura \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 9\OML/cmm/m/it/10.95 u \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 u:id \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 ref:id \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 u:millasDisponibles \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 ref:millasDisponibles \OT1/cmr/m/n/10.95 +
+ []
+
+
+Overfull \hbox (19.92772pt too wide) in paragraph at lines 130--130
 \OT1/cmtt/m/n/10.95 proc acumularMillas$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 usuario \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []distancia \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; []nombrePromo \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []a \OT1/cmr/m/n/10.95 :
  []
 
 
-Overfull \hbox (38.49835pt too wide) in paragraph at lines 124--124
+Overfull \hbox (38.49835pt too wide) in paragraph at lines 131--131
 []\OT1/cmtt/m/n/10.95 requiere \OMS/cmsy/m/n/10.95 f $\OML/cmm/m/it/10.95 usuario \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:usuarios \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 a \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 A\OT1/cmr/m/n/10.95 0 \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 distancia \OMS/cmsy/m/n/10.95 ^^U \OT1/cmr/m/n/10.95 0 \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 esPromoActiva\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 nombrePromo; a\OT1/cmr/m/n/10.95 )$
  []
 
 
-Overfull \hbox (14.92491pt too wide) in paragraph at lines 130--132
-\OT1/cmtt/m/n/10.95 pred esPromoActiva$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 nombre \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; a \OT1/cmr/m/n/10.95 : [])$  \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 ((\OMS/cmsy/m/n/10.95 9\OML/cmm/m/it/10.95 p \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 p \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:promociones \OMS/cmsy/m/n/10.95 ^[]
+Overfull \hbox (6.97041pt too wide) in paragraph at lines 141--141
+\OT1/cmtt/m/n/10.95 asegura \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 9\OML/cmm/m/it/10.95 u[] \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 u[]:id \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 u:id \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 u[]:millasDisponibles \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 u:millasDisponibles \OMS/cmsy/m/n/10.95 ^^@
  []
 
 [2]
-
-Package macros/AED Warning: ent Es obsoleto, use Z on input line 168.
-
-
-Overfull \hbox (27.35492pt too wide) in paragraph at lines 205--206
-\OT1/cmtt/m/n/10.95 aux usuarioRegistrado$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 id \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; []millasTotales \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; []millasDisponibles \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; []historial \OT1/cmr/m/n/10.95 :
+Overfull \hbox (15.95929pt too wide) in paragraph at lines 146--146
+\OT1/cmtt/m/n/10.95 proc transferirMillas$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 cantMillas \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; []usuarioOrigen \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []usuarioDestino \OT1/cmr/m/n/10.95 :
  []
 
 
-Overfull \hbox (18.41411pt too wide) in paragraph at lines 214--216
-\OT1/cmtt/m/n/10.95 aux historialTransacciones$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 u \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []a \OT1/cmr/m/n/10.95 : []) : \U/msb/m/n/10.95 Z$ $\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 u:historialTransacciones$
+Overfull \hbox (8.83926pt too wide) in paragraph at lines 147--147
+[]\OT1/cmtt/m/n/10.95 requiere \OMS/cmsy/m/n/10.95 f $\OML/cmm/m/it/10.95 usuarioDestino \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:usuarios \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 usuarioOrigen \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:usuarios \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 cantMillas \OMS/cmsy/m/n/10.95 ^^U
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--216
-
+Overfull \hbox (17.57625pt too wide) in paragraph at lines 147--147
+\OT1/cmr/m/n/10.95 0 \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 usuarioOrigen:millasDisponibles \OMS/cmsy/m/n/10.95 ^^U \OML/cmm/m/it/10.95 cantMillas \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 usuarioDestino \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 usuarioOrigen \OMS/cmsy/m/n/10.95 ^
  []
 
 
-Overfull \hbox (50.65512pt too wide) in paragraph at lines 220--223
-\OT1/cmtt/m/n/10.95 aux factorPromocion$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 p \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; []a \OT1/cmr/m/n/10.95 : []) : \U/msb/m/n/10.95 Z$ $\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 p:factor$  \OT1/cmtt/m/n/10.95 aux estadoPromocion$\OT1/cmr/m/n/10.95 ([]\OML/cmm/m/it/10.95 p \OT1/cmr/m/n/10.95 :
+Overfull \hbox (12.62965pt too wide) in paragraph at lines 148--148
+\OT1/cmtt/m/n/10.95 asegura \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 8\OML/cmm/m/it/10.95 u \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 A\OT1/cmr/m/n/10.95 0\OML/cmm/m/it/10.95 :usuarios \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 usuarioOrigen \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 u \OMS/cmsy/m/n/10.95 6\OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 usuarioDestino \OMS/cmsy/m/n/10.95 !
  []
 
 
-Overfull \hbox (0.45934pt too wide) in paragraph at lines 227--228
-\OT1/cmtt/m/n/10.95 pred existeUsuarioEnSistema$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 id \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; a \OT1/cmr/m/n/10.95 : [])$  \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 9\OML/cmm/m/it/10.95 u[] \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 u[] \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:usuarios \OMS/cmsy/m/n/10.95 ^[]
+Package macros/AED Warning: ent Es obsoleto, use Z on input line 178.
+
+
+Overfull \hbox (13.90688pt too wide) in paragraph at lines 194--194
+[]\OT1/cmtt/m/n/10.95 requiere \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 (\OMS/cmsy/m/n/10.95 9\OML/cmm/m/it/10.95 p \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 p \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a \OMS/cmsy/m/n/10.95 ^ \OML/cmm/m/it/10.95 p:nombre \OT1/cmr/m/n/10.95 = \OML/cmm/m/it/10.95 nombre[]sPromoActiva\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 nombre; a\OT1/cmr/m/n/10.95 ))[] =
  []
 
-[3] (main.aux)
+[3]
+Overfull \hbox (30.1698pt too wide) in paragraph at lines 218--219
+\OT1/cmtt/m/n/10.95 aux queCategoriaEs$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 millas \OT1/cmr/m/n/10.95 : \U/msb/m/n/10.95 Z\OML/cmm/m/it/10.95 ; a \OT1/cmr/m/n/10.95 : []) : []$ $= [](\OML/cmm/m/it/10.95 millas \OMS/cmsy/m/n/10.95 ^^T \OT1/cmr/m/n/10.95 10000\OML/cmm/m/it/10.95 ; Bronce; [] 
+ []
+
+
+Overfull \hbox (14.92491pt too wide) in paragraph at lines 222--226
+\OT1/cmtt/m/n/10.95 pred esPromoActiva$\OT1/cmr/m/n/10.95 (\OML/cmm/m/it/10.95 nombre \OT1/cmr/m/n/10.95 : []\OML/cmm/m/it/10.95 ; a \OT1/cmr/m/n/10.95 : [])$  \OMS/cmsy/m/n/10.95 f $\OT1/cmr/m/n/10.95 ((\OMS/cmsy/m/n/10.95 9\OML/cmm/m/it/10.95 p \OT1/cmr/m/n/10.95 : []) (\OML/cmm/m/it/10.95 p \OMS/cmsy/m/n/10.95 2 \OML/cmm/m/it/10.95 a:promociones \OMS/cmsy/m/n/10.95 ^[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--226
+
+ []
+
+[4] (main.aux)
  ***********
 LaTeX2e <2026-06-01>
 L3 programming layer <2026-07-20>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 3549 strings out of 467501
- 54295 string characters out of 5408550
- 475144 words of memory out of 5000000
- 32751 multiletter control sequences out of 15000+600000
+ 3546 strings out of 467501
+ 54239 string characters out of 5408550
+ 477144 words of memory out of 5000000
+ 32748 multiletter control sequences out of 15000+600000
  635561 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 71i,8n,79p,369b,301s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 71i,8n,79p,369b,295s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/della/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (4 pages, 530384 bytes).
+Output written on main.pdf (5 pages, 534689 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
+ 85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
