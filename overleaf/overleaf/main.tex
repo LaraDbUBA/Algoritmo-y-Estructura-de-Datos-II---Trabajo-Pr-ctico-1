@@ -237,7 +237,14 @@ Categoria ES $\cha$ \newline
 
 \pred{elRestoDeUsuariosSeMantienenIgual}{usuario: \Tipo{Usuario}, A0: \Tipo{AirMiles}, a:\Tipo{AirMiles}}{\paraTodo{u}{\Tipo{Usuario}}{u \in A0.usuarios \land u \neq usuario \implicaLuego u \in a.usuarios}} \newline
 \pred{elRestoDePromocionesSeMantienenIgual}{nombrePromocion: \cha, A0: \Tipo{AirMiles, a: \Tipo{AirMiles}}}{\paraTodo{p}{\Tipo{Promocion}}{p \in A0.promociones \land p.nombre \neq nombrePromocion \implica p \in a.promociones}} \newline
-\pred{esPromocionDelSistema}{promo: \Tipo{Promocion} a: \Tipo{AirMiles}}{p \in a.promociones}
+\pred{esPromocionDelSistema}{promo: \Tipo{Promocion} a: \Tipo{AirMiles}}{p \in a.promociones} \newline
+\pred{tienenMismoId}{u_0: \Tipo{Usuario}, u_1: \Tipo{Usuario}}{u_0.id = u_1.id} \newline
+\pred{tienenMismasMillasDisponibles}{u_0: \Tipo{Usuario}, u_1: \Tipo{Usuario}}{u_0.millasDisponibles = u_1.millasDisponibles} \newline
+\pred{tienenMismasMillasTotales}{u_0: \Tipo{Usuario}, u_1: \Tipo{Usuario}}{u_0.millasTotales = u_1.Totales} \newline
+\pred{tienenMismaCategoria}{u_0: \Tipo{Usuario}, u_1: \Tipo{Usuario}}{u_0.categoria= u_1.categoria} \newline
+\pred{tienenMismoHistorial}{u_0: \Tipo{Usuario}, u_1: \Tipo{Usuario}}{u_0.historial = u_1.historial} \newline
+\pred{tieneSaldoSuficiente}{u: \Tipo{Usuario}, cantMillas : \Z}{u.millasDisponibles \geq cantMillas} \newline
+\pred{NoSuperaMillasTotales}{u: \Tipo{Usuario}, cantMillas: \Z}{u.millasTotales \geq u.millasDisponibles + cantMillas} \newline
 \end{tad}
 
 \end{document}
