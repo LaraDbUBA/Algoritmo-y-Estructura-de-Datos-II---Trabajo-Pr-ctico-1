@@ -123,7 +123,7 @@ Categoria ES $\cha$ \newline
    \aseguraLargo{\existe{u}{\Tipo{Usuario}}{esUsuarioRegistrado(u.id, a) \land u.id = idNuevoUsuario \land u.millasTotales = 500 \land u.millasDisponibles = 500 \land u.historial = [] \land u.categoria = Bronce}}
     \asegura{elRestoDeUsuariosSeMantienenIgual(referidor, A0, a)}
     \asegura{\#a.usuarios = \#A0.usuarios + 1}
-    \aseguraLargo{\existe{u}{\Tipo{Usuario}}{esUsuarioRegistrado(u.id,a) \land u.id = referidor.id \land u.millasDisponibles = referidor.millasDisponibles + 500 \land u.millasTotales = referidor.millasTotales + 500 \land u.historial = referidor.historial ++ []\land u.categoria = queCategoriaEs(u.millasTotales,a)}}
+    \aseguraLargo{\existe{u}{\Tipo{Usuario}}{esUsuarioRegistrado(u.id,a) \land tienenMismoId(u, referidor) \land u.millasDisponibles = referidor.millasDisponibles + 500 \land u.millasTotales = referidor.millasTotales + 500 \land u.historial = referidor.historial ++ []\land u.categoria = queCategoriaEs(u.millasTotales,a)}}
     \asegura{a.promociones = A0.promociones}
 
 \end{proc}
@@ -137,20 +137,20 @@ Categoria ES $\cha$ \newline
 
 \begin{proc}{canjearMillas}
 {\In u: \Tipo{Usuario}, \In cantMillas: \Z, \In premio: \Tipo{T}, \Inout a: \Tipo{AirMiles}}{}
-    \requiereLargo{cantMillas > 0 \land esUsuarioRegistrado(u.id,a) \land a = A0 \land u.millasDisponibles \geq cantMillas \land u.millasTotales \geq u.millasDisponibles + cantMillas}
+    \requiereLargo{cantMillas > 0 \land esUsuarioRegistrado(u.id,a) \land a = A0 \land tieneSaldoSuficiente(u, cantMillas) \land NoSuperaMillasTotales(u, cantMillas)}
     \asegura{\#A0.usuarios = \#a.usuarios}
-    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{esUsuarioRegistrado(u_0.id,a) \land u_0.id = u.id \land u_0.millasDisponibles = u.millasDisponibles - cantMillas \land u.millasTotales = u_0.millasTotales \land u_0.historial = u.historial ++[] \land u_0.categria = u.categoria}}
+    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{esUsuarioRegistrado(u_0.id,a) \land tienenMismoId(u_0, u) \land u_0.millasDisponibles = u.millasDisponibles - cantMillas \land tienenMismasMillasTotales(u, u_0) \land u_0.historial = u.historial ++[] \land tienenMismaCategoria(u, u_0)}}
     \asegura{A0.promociones = a.promociones}
     \asegura{elRestoDeUsuariosSeMantienenIgual(u, A0, a)}
 \end{proc}
 
 \begin{proc}{transferirMillas}
 {\In cantMillas: \Z, \In usuarioOrigen: \Tipo{Usuario}, \In usuarioDestino: \Tipo{Usuario}, \Inout a: \Tipo{AirMiles}}{}
-    \requiereLargo{esUsuarioRegistrado(usuarioDestino.id, a) \land esUsuarioRegistrado(usuarioOrigen.id, a) \land cantMillas \geq 0 \land usuarioOrigen.millasDisponibles \geq cantMillas \land usuarioDestino \neq usuarioOrigen \land a = A0 \land usuarioDestino.millasTotales \geq usuarioDestino.millasDisponibles + cantMillas}
+    \requiereLargo{esUsuarioRegistrado(usuarioDestino.id, a) \land esUsuarioRegistrado(usuarioOrigen.id, a) \land cantMillas \geq 0 \land tieneSaldoSuficiente(usuarioOrigen, cantMillas) \land usuarioDestino \neq usuarioOrigen \land a = A0 \land NoSuperaMillasTotales(usuarioDestino, cantMillas)}
     \asegura{\paraTodo{u}{\Tipo{Usuario}}{esUsuarioRegistrado(u.id, A0) \land u \neq usuarioOrigen \land u \neq usuarioDestino \implica esUsuarioRegistrado(u.id, a)}}
     \asegura{\#A0.usuarios = \#a.usuarios}
-    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{esUsuarioRegistrado(u_0.id, a) \land u_0.id = usuarioOrigen.id \land u_0.millasDisponibles = usuarioOrigen.millasDisponibles - cantMillas \land u_0.millasTotales = usuarioOrigen.millasTotales \land u_0.historial = usuarioOrigen.historial ++ [] \land u_0.categoria = usuarioOrigen.categoria}}
-    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{esUsuarioRegistrado(u_0,a) \land u_0.id = usuarioDestino.id \land u_0.millasDisponibles = usuarioDestino.millasDisponibles + cantMillas \land u_0.millasTotales = usuarioDestino.millasTotales \land u_0.historial = usuarioDestino.historial ++ [] \land u_0.categoria = usuarioDestino.categoria}}
+    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{esUsuarioRegistrado(u_0.id, a) \land tienenMismoId(u_0, usuarioOrigen) \land u_0.millasDisponibles = usuarioOrigen.millasDisponibles - cantMillas \land tienenMismasMillasTotales(u_0, usuarioOrigen) \land u_0.historial = usuarioOrigen.historial ++ [] \land tienenMismaCategoria(u_0, usuarioOrigen)}}
+    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{esUsuarioRegistrado(u_0,a) \land tienenMismoId(u_0, usuarioDestino) \land u_0.millasDisponibles = usuarioDestino.millasDisponibles + cantMillas \land tienenMismasMillasTotales(u_0, usuarioDestino) \land u_0.historial = usuarioDestino.historial ++ [] \land tienenMismaCategoria(u_0, usuarioDestino)}}
 \end{proc}
 
 \begin{proc}{consultarSaldo}
@@ -180,7 +180,7 @@ Categoria ES $\cha$ \newline
 \begin{proc}{iniciarPromocion}
 {\In nombre: \cha, \In factor: \ent, \Inout  a: AirMiles}{}
     \requiere{ factor \geq 1 \land a = A0}
-    \asegura{\existe{p}{\Tipo{Promocion}}{p \in a.promociones \land p.nombre = nombre \land p.factor = factor \land p.estado = True}}
+    \asegura{\existe{p}{\Tipo{Promocion}}{esPromocionDelSistema(p, a) \land p.nombre = nombre \land p.factor = factor \land p.estado = True}}
     \asegura{elRestoDePromocionesSeMantienenIgual(nombre, A0, a) \land elRestoDePromocionesSeMantienenIgual(nombre, a, A0)}
     \asegura{a.usuarios = A0.usuarios}
 \end{proc}
@@ -196,7 +196,7 @@ Categoria ES $\cha$ \newline
 {\In nombre: \cha, \Inout a: \Tipo{AirMiles}}{}
     \requiere{ esPromoActiva(nombre, a) \land a=A0 \land nombre \neq NoPromo}
     
-    \asegura{\existe{p}{\Tipo{Promocion}}{p.nombre = nombre \land p.estado = False \land p \in a.promociones }}
+    \asegura{\existe{p}{\Tipo{Promocion}}{p.nombre = nombre \land p.estado = False \land esPromocionDelSistema(p, a) }}
     \asegura{elRestoDePromocionesSeMantienenIgual(nombre, A0, a)}
     \asegura{\#a.promociones = \#A0.promociones}
     \asegura{a.usuarios = A0.usuarios}
