@@ -85,14 +85,16 @@ Además, disponen de comandos para cuantificadores: $\paraTodo{x}{\mathbb{Z}}{x 
 %Aca arranca
 \newpage
 
-Usuario ES $\struct{id: \Z, millasTotales: \Z, millasDisponibles: \Z, historial: \seq , factor: \Z}$ \newline
+Usuario ES $\struct{id: \Z, millasTotales: \Z, millasDisponibles: \Z, historial: \seq{} , categoria: \Tipo{Categoria}}$ \newline
 Promocion ES $\struct{nombre: \cha, factor: \Z, estado: \bool}$ \newline
 Categoria ES $\cha$ \newline
 
 \begin{tad}{AirMiles}
 
 \obs{usuarios}{\conj{\Tipo{Usuario}}} \newline
-\obs{promociones}{\conj{\Tipo{Promocion}}} 
+\obs{promociones}{\conj{\Tipo{Promocion}}} \newline
+\obs{promocionesConTope}{\conj{\tupla{\Tipo{Promocion}, \Z, \Z}}} \newline
+
 
 \begin{proc}{crearSistema}
 {}{\Tipo{AirMiles}}
@@ -118,10 +120,10 @@ Categoria ES $\cha$ \newline
 \begin{proc}{registrarUsuarioConReferidor}
 {\In idNuevoUsuario: \Z, \In referidor: \Tipo{Usuario}, \Inout a: \Tipo{AirMiles}}{}
     \requiere{referidor \in a.usuarios \land a = A0 \land !esUsuarioRegistrado(idNuevoUsuario, a)}
-   \asegura{\existe{u}{\Tipo{Usuario}}{u \in a.usuarios \land u.id = idNuevoUsuario \land u.millasTotales = 500 \land u.millasDisponibles = 500 \land u.historial = [] \land u.categoria = Bronce}}
+   \aseguraLargo{\existe{u}{\Tipo{Usuario}}{u \in a.usuarios \land u.id = idNuevoUsuario \land u.millasTotales = 500 \land u.millasDisponibles = 500 \land u.historial = [] \land u.categoria = Bronce}}
     \asegura{\paraTodo{u}{\Tipo{Usuario}}{u \in A0.usuarios \land u \neq referidor \implicaLuego u \in a.usuarios}}
     \asegura{\#a.usuarios = \#A0.usuarios + 1}
-    \asegura{\existe{u}{\Tipo{Usuario}}{u.id = referidor.id \land u.millasDisponibles = referidor.millasDisponibles + 500 \land u.millasTotales = referidor.millasTotales + 500 \land u.historial = referidor.historial ++ \land u.categoria = queCategoriaEs(u.millasTotales,a)}}
+    \aseguraLargo{\existe{u}{\Tipo{Usuario}}{u.id = referidor.id \land u.millasDisponibles = referidor.millasDisponibles + 500 \land u.millasTotales = referidor.millasTotales + 500 \land u.historial = referidor.historial ++ \land u.categoria = queCategoriaEs(u.millasTotales,a)}}
     \asegura{a.promociones = A0.promociones}
 
 \end{proc}
@@ -129,25 +131,25 @@ Categoria ES $\cha$ \newline
 \begin{proc}{acumularMillas}
 {\In usuario: \Tipo{Usuario}, \In distancia: \Z, \In nombrePromo: \cha, \Inout a:\Tipo{AirMiles}}{}
     \requiere{usuario \in a.usuarios \land a = A0 \land distancia \geq 0 \land esPromoActiva(nombrePromo, a)}
- 
+    \asegura{h}
 \end{proc}
 
 
 \begin{proc}{canjearMillas}
 {\In u: \Tipo{Usuario}, \In cantMillas: \Z, \In premio: \Tipo{T}, \Inout a: \Tipo{AirMiles}}{}
-    \requiere{cantMillas > 0 \land u \in a.usuarios \land a = A0 \land u.millasDisponibles \geq cantMillas}
-    \asegura{\paraTodo{u}{\Tipo{Usuario}}{u \in A0.usuarios \land u \neq ref \implicaLuego u \in a.usuarios}}
+    \requiere{cantMillas > 0 \land u \in a.usuarios \land a = A0 \land u.millasDisponibles \geq cantMillas \land u.millasTotales \geq u.millasDisponibles + cantMillas}
     \asegura{\#A0.usuarios = \#a.usuarios}
-    \asegura{\existe{u_0}{\Tipo{Usuario}}{u_0.id = u.id \land u_0.millasDisponibles = u.millasDisponibles - cantMillas \land u.millasTotales = u_0.millasTotales \land u_0.historial = u.historial ++[] \land u_0.rango = u.rango}}
+    \asegura{\existe{u_0}{\Tipo{Usuario}}{u_0.id = u.id \land u_0.millasDisponibles = u.millasDisponibles - cantMillas \land u.millasTotales = u_0.millasTotales \land u_0.historial = u.historial ++[] \land u_0.categria = u.categoria}}
     \asegura{A0.promociones = a.promociones}
 \end{proc}
 
 \begin{proc}{transferirMillas}
 {\In cantMillas: \Z, \In usuarioOrigen: \Tipo{Usuario}, \In usuarioDestino: \Tipo{Usuario}, \Inout a: \Tipo{AirMiles}}{}
-    \requiere{usuarioDestino \in a.usuarios \land usuarioOrigen \in a.usuarios \land cantMillas \geq 0 \land usuarioOrigen.millasDisponibles \geq cantMillas \land usuarioDestino \neq usuarioOrigen \land a = A0 }
+    \requiereLargo{usuarioDestino \in a.usuarios \land usuarioOrigen \in a.usuarios \land cantMillas \geq 0 \land usuarioOrigen.millasDisponibles \geq cantMillas \land usuarioDestino \neq usuarioOrigen \land a = A0 \land usuarioDestino.millasTotales \geq usuarioDestino.millasDisponibles + cantMillas}
     \asegura{\paraTodo{u}{\Tipo{Usuario}}{u \in A0.usuarios \land u \neq usuarioOrigen \land u \neq usuarioDestino \implica u \in a.usuarios}}
     \asegura{\#A0.usuarios = \#a.usuarios}
-    \asegura{\existe{u_0}{\Tipo{Usuario}}{}}
+    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{u_0.id = usuarioOrigen.id \land u_0.millasDisponibles = usuarioOrigen.millasDisponibles - cantMillas \land u_0.millasTotales = usuarioOrigen.millasTotales \land u_0.historial = usuarioOrigen.historial ++ [] \land u_0.categoria = usuarioOrigen.categoria}}
+    \aseguraLargo{\existe{u_0}{\Tipo{Usuario}}{u_0.id = usuarioDestino.id \land u_0.millasDisponibles = usuarioDestino.millasDisponibles + cantMillas \land u_0.millasTotales = usuarioDestino.millasTotales \land u_0.historial = usuarioDestino.historial ++ [] \land u_0.categoria = usuarioDestino.categoria}}
 \end{proc}
 
 \begin{proc}{consultarSaldo}
@@ -191,9 +193,12 @@ Categoria ES $\cha$ \newline
 
 \begin{proc}{finalizarPromocion}
 {\In nombre: \cha, \Inout a: \Tipo{AirMiles}}{}
-    \requiere{\existe{p}{\Tipo{Promocion}}{p \in a \land p.nombre = nombre ^esPromoActiva(nombre, a)} ^ a=A0}
+    \requiere{\existe{p}{\Tipo{Promocion}}{p \in a.promociones \land p.nombre = nombre \land esPromoActiva(nombre, a)} \land a=A0 \land nombre \neq NoPromo}
     
-    \asegura{algo}
+    \asegura{\existe{p}{\Tipo{Promocion}}{p.nombre = nombre \land p.estado = False \land p \in a.promociones }}
+    \asegura{\paraTodo{p}{\Tipo{Promocion}}{p.nombre \neq nombre \land p \in A0.promociones \implica p \in a.promociones}}
+    \asegura{\#a.promociones = \#A0.promociones}
+    \asegura{a.usuarios = A0.usuarios}
 \end{proc}
 
 \begin{proc}{elQueTieneMasMillas}
