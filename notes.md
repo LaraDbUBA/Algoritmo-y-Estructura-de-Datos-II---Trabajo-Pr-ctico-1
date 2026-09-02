@@ -6,3 +6,21 @@
 - Hay que agregar la condicion de que las disponibles no sean mayores a las totales
 - Preguntar por cambios de consignas
 - 
+
+### Ideas de predicados extras
+- tienenMismasMillasDisponibles
+- tienenMismasMillasTotales
+- tieneSaldoSuficiente
+- NoSuperaMillasTotales
+- esPromocionDelSistema
+- tienenMismoId
+- tienenMismaCategoria
+- tienenMismoHistorial
+
+### Ideas de auxiliares extras
+- sumaDeMillasAcumuladas
+- sumaDeMillasCanjeadas
+- sumaDeMillasEnviadas
+- sumaDeMillasRecibidas
+
+Para el de acumular millas habria que crear un auxiliar/predicado que chequee que la promocion con tope se elimine si se paso del tope y la deje sino.
