@@ -13,7 +13,7 @@ asegura { a.promociones = A0.promociones }
 
 `No es mejor modificarlo asi:`
 proc registrarUsuario(inout a : AirMiles, in id : Z) {
-requiere { !esU suarioRegistrado(id, a) ∧a = A0 }
+requiere { !esU suarioRegistrado(id, a0) ∧a = A0 } <NO SE SI ES A0 O a dentro de uruarioRegistrado>
 asegura { #a.usuarios = #A0.usuarios + 1 }
 asegura {(∀u : Usuario)(u ∈ A0.usuarios → u ∈ a.usuarios)
 }
@@ -35,4 +35,36 @@ Si está en promociones con estado = True pero ya fue eliminada de promocionesCo
 
 
 --------------------------------------------------------------------------------------------------------
+
+<OLVIDATE DE LO TODO LO SIGUIENTE, DEPENDE DE LAS DUDAS>
+
+
+<PROMOCION>
+Creo que se me ocurrio y se puede juntar modificando la estructura de promociones y agregandole a lo último una lista
+La lista vacia representa para los que no tienen tope y cuando la lista se abre ejemplo [A,B]: A sería el tope y B las millas que se van acumlando o eso que piden para que tenga como contador
+
+`Dejo la estructura mas o menos escrita de que es lo que pienso pero creo que se podría hacer algo asi:`
+
+
+`proc iniciarPromocion`(in nombre : String, in factor : Z, inout a : AirMiles) {
+`requiere` { factor ≥1 ∧ a = A0 }
+
+`asegura` {(existe un p : promocion) y luego (p no pertenece a promociones y p.nombre = nombre ∧
+p.factor = factor ∧p.estado = True ^ p.tope = [])}
+
+- O sea en este de arriba quiero decir que si no esta, entonces se crea uno nuevo con la lista vacia
+
+`asegura` {Y aca iria uno mismo que indica que existe pero que lo unico que hace es cambiar el false por un true}
+`asegura` {elRestoDeP romocionesSeM antienenIgual(nombre, A0, a)∧elRestoDeP romocionesSeM antienenIgual(nombre, a, A0)
+}
+`asegura` {a.usuarios = a0.usuarios}
+
+
+
+proc iniciarPromocionConTope(in nombre : char, in f actor : Z, in tope : Z, inout a :
+AirMiles) : AirMiles {
+requiere { a = A0 ∧f actor ≥0 ∧tope ≥0 }
+asegura {elRestoDeP romocionesSeM antienenIgual(nombre, A0, a)∧elRestoDeP romocionesSeM antienenIgual(nombre, a, A0)
+}
+}
 

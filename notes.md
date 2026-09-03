@@ -5,7 +5,11 @@
 - Promocion con Tope, como registramos el dato
 - Hay que agregar la condicion de que las disponibles no sean mayores a las totales
 - Preguntar por cambios de consignas
-- 
+- Que consideran ellos como eliminar del sistema en tope? Se puede volver a activar despues o ya fue para siempre?
+- Si se elimina se puede volver a crear otra prommo con el mismo nombre? Tiene que empezar desde 0 el contador?
+- Si existe un promo con tope que esta apagada, puede existir una promo sin tope con ese nombre?
+- Puede haber una promocion con tope y otra sin tope con el mismo nombre?
+
 
 ### Ideas de predicados extras
 - tienenMismasMillasDisponibles
